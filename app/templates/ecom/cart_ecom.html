@@ -1,0 +1,44 @@
+{% extends "ecom/base_ecom.html"%}
+
+{% block top_nav %}
+
+{% include "ecom/top_nav_2.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class='container'>
+
+  <h1 class='title'>SHOPPING BAG</h1>
+
+  {% if cart.products|length > 0 %}
+      {% for i in cart.products %}
+      <div class='class_items'>
+        <img src="{{ i.img_url }}" alt="{{i.name}}" class='cart_item'>
+        <span class='cart_item'>{{i.name}}</span>
+        <span class='cart_item'>{{i.price}}</span>
+        <a href="{{url_for('ecom.delete_item', product_id=i.id) }}"><i class="fas fa-minus-circle cart_item"></i></a>
+      </div>
+      {% endfor %}
+
+    <p class='total_price'>TOTAL PRICE: ${{total_price}}</p>
+
+    <form action="/create-checkout-session" method="POST">
+    <button type="submit" id="checkout-button" class="cart_action">PLACE ORDER</button>
+    </form>
+    <p class='info'>demo website - to fully test it, use the following credit cart: 4242 4242 4242 4242 (date / csc: as you want)</p>
+    <a href="{{ url_for('ecom.index') }}" name="continue_shopping" class="cart_action">continue shopping</a>
+
+  {% else %}
+  <a href="{{ url_for('ecom.index') }}" name="continue_shopping" class="cart_action">add an item to your cart</a>
+{% endif %}
+
+</div>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+{% endblock %}

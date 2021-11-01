@@ -1,0 +1,233 @@
+/*
+https://support.tradegecko.com/hc/en-us/articles/206111177-Run-an-Inventory-Details-report
+https://support.tradegecko.com/hc/article_attachments/900006337126/001.jpg
+https://sc.filehippo.net/images/t_app-cover-l,f_auto/p/d6b67139-4747-51cb-86b1-9b57243889df/2400508472/tradegecko-screenshot.png
+
+https://www.flaticon.com/premium-icon/cloud_2377414?k=1635262285344
+*/
+
+
+/* GLOBAL */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500&display=swap');
+
+:root{
+  --plus_dark_grey: #27282a;
+  --dark_grey: #393a3e;
+  --light_grey: #f4f5f9;
+  --text_grey: #8a8b8c;
+  --dark_green: #30b061;
+  --light_green:#a0d6a4;
+  --blue: #4bb5ee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+body{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+    color: var(--text_grey);
+}
+
+h1 {
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+}
+
+.container {
+  padding: 50px 5% 5% 250px;
+}
+
+
+
+/* MENU ICON */
+.icon_menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+  cursor: pointer;
+  color: #fff;
+}
+
+.icon_menu:hover {
+  color: var(--dark_green);
+}
+
+/* LEFT MENU */
+
+.left_sidebar {
+  background-color: var(--dark_grey);
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  color: #fff;
+  display: block;
+}
+
+.sidebarTransform {
+    transform: translateX(-200px);
+}
+
+.left_title {
+  padding: 22% 10%;
+  background: url("../img/cloud_w.png") no-repeat;
+  background-position: center;
+}
+
+.left_title:hover {
+  background: url("../img/cloud_g.png") no-repeat;
+  background-position: center;
+}
+
+.left_sidebar a {
+  color: inherit;
+}
+
+.side_menu {
+  padding: 5% 10%;
+  font-weight: 400;
+}
+
+.side_menu:hover, .side_menu_active {
+  background-color: var(--plus_dark_grey);
+  cursor: pointer;
+  color: var(--dark_green);
+}
+
+
+
+
+/* TOP MENU */
+.top_sidebar {
+  background-color: var(--light_grey);
+  padding: 20px 0 20px 225px;
+}
+
+
+
+/* SUB MENU */
+.sub_nav {
+    padding: 0px 0 0px 225px;
+  }
+
+.sub_nav button {
+  color: var(--blue);
+  background-color: #fff;
+  width: auto;
+  padding: 0 20px;
+}
+
+.sub_nav button:hover {
+  color: var(--dark_green);
+  border: none;
+}
+
+.sub_nav_active {
+  font-weight: bold;
+}
+
+
+/* BUTTON / INPUT */
+
+#submit, button {
+  background-color: var(--dark_green);
+  border: none;
+	outline: none;
+  width: 100px;
+  color: #fff;
+  height: 30px;
+  margin-top: 30px;
+  padding-left: 0;
+}
+
+#submit:hover, button:hover{
+  background-color: #fff;
+  color: #4ac089;
+  cursor: pointer;
+  border:1px solid var(--dark_green);
+}
+
+
+input {
+  border: none;
+  height: 30px;
+  padding-left: 10px;
+  border-bottom:1px solid var(--dark_green);
+  display: block;
+  width: 50%;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+input:focus{
+    border-bottom:1px solid var(--dark_grey);
+    outline: none !important;
+}
+
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+form, table {
+  margin: 3% 0;
+}
+
+
+/* TABLE */
+
+th, td {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+th {
+  font-weight: 400;
+}
+
+
+@media (max-width: 990px) {
+  .container{
+    padding: 50px 5% 5% 25px;
+  }
+  .top_sidebar {
+    padding: 20px 0 20px 30px;
+  }
+
+  .sub_nav {
+      padding: 0px 0 0px 30px;
+    }
+
+  .sub_nav button {
+    padding: 0 20px 0 0;
+  }
+  
+  /* .left_sidebar {
+    display: none;
+  } */
+}
+
+@media (min-width: 990px) {
+  .icon_menu {
+    display: none;
+  }
+}

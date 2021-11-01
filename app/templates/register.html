@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block login_register %}
+
+<div class="top_sidebar">
+	<h1>Register</h1>
+</div>
+
+
+<div class="container">
+
+<form action="{{ url_for('auth.register') }}" method="POST">
+	{{ form.csrf_token }}
+    {{ form.first_name }}
+    {{ form.last_name }}
+    {{ form.email }}
+    {{ form.password }}
+    {{ form.submit }}
+</form>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+     <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+</div>
+
+{% endblock %}

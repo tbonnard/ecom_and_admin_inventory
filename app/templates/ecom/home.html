@@ -1,0 +1,56 @@
+{% extends "ecom/base_ecom.html" %}
+
+
+{% block top_nav %}
+
+{% include "ecom/top_nav_1.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<section id='top_product'>
+
+<div class='top_text'>
+  <h1>NEW COLLECTION</h1>
+  <a href="#products"><button type="button" name="view_more">VIEW MORE</button></a>
+</div>
+
+</section>
+
+
+<section id='products'>
+
+  <h2>PRODUCTS</h2>
+
+<div class="sub_nav">
+  <a href="{{url_for('ecom.index', cat_id=0) }}"><button >All</button></a>
+
+  {% for i in categories %}
+  <a href="{{url_for('ecom.index', cat_id=i.id) }}"><button>{{i.name}}</button></a>
+  {% endfor %}
+
+</div>
+
+  <div class='items'>
+    {% for i in products %}
+    <div class='item'>
+      <h3>{{ i.name }}</h3>
+      <img src="{{ i.img_url }}" alt="{{i.name}}">
+      <p>{{ i.description }}</p>
+      <p class='price'>${{ i.price }}</p>
+      {% if i.quantity > 0 %}
+        <a href="{{url_for('ecom.add_item', product_id=i.id) }}"><i class="fas fa-cart-plus" title='Add to cart'></i></a>
+        <a href="{{url_for('ecom.add_item', product_id=i.id, buy=1) }}"><button type="button" name="button">BUY NOW</button></a>
+        {% else %}
+        <p class='out_stock'>out of stock</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top_sidebar">
+  <h1>Categories</h1>
+</div>
+
+<div class="sub_nav">
+	<button type="button" name="all_products" id="categories_list_btn" class="sub_nav_active">All categories</button>
+	<button type="button" name="create_product" id="categories_create_btn">Create a new category</button>
+</div>
+
+
+<div class="container" id="categories_list">
+	<h2>List of all categories</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+			</tr>
+		</thead>
+		<tbody>
+				{% for i in categories %}
+				<tr>
+						<td>{{ i.id }}</td>
+						<td>{{ i.name }}</td>
+				</tr>
+				{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+
+<div class="container" id="categories_create">
+  <h2>Create a new category</h2>
+
+	<form action="{{ url_for('main.category') }}" method="POST" >
+		{{ form.csrf_token }}
+	    {{ form.name }}
+	    {{ form.submit }}
+	</form>
+</div>
+
+
+<script type="text/javascript">
+	document.querySelector('#categories_create').style.display = 'none';
+
+	document.querySelector('#categories_list_btn').addEventListener('click', () => {
+		document.querySelector('#categories_list').style.display = 'block';
+		document.querySelector('#categories_create').style.display = 'none';
+		document.querySelector('#categories_list_btn').className = "sub_nav_active";
+		document.querySelector('#categories_create_btn').className = "";
+	})
+
+	document.querySelector('#categories_create_btn').addEventListener('click', () => {
+		document.querySelector('#categories_list').style.display = 'none';
+		document.querySelector('#categories_create').style.display = 'block';
+		document.querySelector('#categories_create_btn').className = "sub_nav_active";
+		document.querySelector('#categories_list_btn').className = "";
+	})
+</script>
+
+
+{% endblock %}

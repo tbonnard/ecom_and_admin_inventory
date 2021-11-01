@@ -1,0 +1,131 @@
+{% extends "ecom/base_ecom.html" %}
+
+
+
+{% block top_nav %}
+
+{% include "ecom/top_nav_3.html"%}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div id='profile_page'>
+
+  <section id='left_profile'>
+
+  </section>
+
+
+  <section id='right_profile'>
+
+    <div class="container_prof">
+
+      <div class="sub_nav">
+      	<button type="button" name="user_details" id="user_details_btn" class="sub_nav_active">USER DETAILS</button>
+      	<button type="button" name="user_address" id="user_address_btn">USER ADDRESS</button>
+        <button type="button" name="user_address" id="user_transactions_btn">TRANSACTIONS</button>
+
+      </div>
+
+      <div class='user_details'>
+        <h2>USER DETAILS</h2>
+
+        <div class='user_details_items'>
+          <p>{{ current_user.id }}</p>
+          <p>{{ current_user.first_name }}</p>
+          <p>{{ current_user.last_name }}</p>
+          <p>{{ current_user.email }}</p>
+        </div>
+
+      </div>
+
+      <div class='user_address'>
+        <h2>ADDRESS</h2>
+            <form action="{{ url_for('ecom.profile') }}" method="POST" id="form_address">
+                {{ form.csrf_token }}
+                <label>Street name and number</label>
+            {{ form.street_name_number }}
+                <label >APT</label>
+            {{ form.apt }}
+                <label >Street 2</label>
+            {{ form.street_2 }}
+                <label >Zip Code</label>
+            {{ form.zip_code }}
+                <label >Province</label>
+                {{ form.province }}
+                <label >Country</label>
+                {{ form.country }}
+            {{ form.submit }}
+        </form>
+      </div>
+
+
+      <div class='user_transactions'>
+        <h2>USER TRANSACTIONS</h2>
+
+      {% if transactions %}
+        {% for i in transactions %}
+
+        <div class='user_details_items'>
+
+        <div class='class_items'>
+          <span class='cart_item'>{{i.id}}</span>
+          <span class='cart_item'>{{i.transaction_date|datetime_format }}</span>
+          <span class='cart_item'>{{i.total_price}}</span>
+          <span class='cart_item'>{{i.status}}</span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>no transaction yet</p>
+        {% endif %}
+      </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+</div>
+
+
+
+<script type="text/javascript">
+	document.querySelector('.user_address').style.display = 'none';
+  document.querySelector('.user_transactions').style.display = 'none';
+
+	document.querySelector('#user_details_btn').addEventListener('click', () => {
+		document.querySelector('.user_details').style.display = 'block';
+		document.querySelector('.user_address').style.display = 'none';
+    document.querySelector('.user_transactions').style.display = 'none';
+		document.querySelector('#user_details_btn').className = "sub_nav_active";
+    document.querySelector('#user_address_btn').className = "";
+		document.querySelector('#user_transactions_btn').className = "";
+	})
+
+	document.querySelector('#user_address_btn').addEventListener('click', () => {
+		document.querySelector('.user_details').style.display = 'none';
+		document.querySelector('.user_address').style.display = 'block';
+    document.querySelector('.user_transactions').style.display = 'none';
+		document.querySelector('#user_address_btn').className = "sub_nav_active";
+		document.querySelector('#user_details_btn').className = "";
+    document.querySelector('#user_transactions_btn').className = "";
+	})
+
+  document.querySelector('#user_transactions_btn').addEventListener('click', () => {
+    document.querySelector('.user_details').style.display = 'none';
+    document.querySelector('.user_address').style.display = 'none';
+    document.querySelector('.user_transactions').style.display = 'block';
+    document.querySelector('#user_address_btn').className = "";
+    document.querySelector('#user_details_btn').className = "";
+    document.querySelector('#user_transactions_btn').className = "sub_nav_active";
+
+  })
+
+</script>
+
+
+
+{% endblock %}

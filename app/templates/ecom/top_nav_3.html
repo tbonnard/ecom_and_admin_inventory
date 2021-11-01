@@ -1,0 +1,42 @@
+<div class="top_nav nav3">
+
+  <div class='top_nav_left'>
+    <a href="{{ url_for('ecom.index') }}">
+      <i class="fab fa-product-hunt fa-2x"></i>
+    </a>
+  </div>
+
+  <div class='top_nav_right'>
+
+      <a href="">
+        <i class="fas fa-search"></i>
+      </a>
+
+      <a href="{{ url_for('ecom.cart') }}">
+        <i id="cart_header" class="fas fa-shopping-cart"></i>
+      </a>
+
+      {% if not current_user.is_authenticated %}
+
+        <!-- <a href="{{ url_for('auth.register_ecom') }}">
+            Register
+        </a> -->
+
+        <a href="{{ url_for('auth.login_ecom') }}">
+          Connect
+        </a>
+      {% else%}
+
+        <a href="{{ url_for('ecom.profile') }}">
+          Profile
+        </a>
+
+        <a href="{{ url_for('auth.logout_ecom') }}">
+            Logout
+        </a>
+
+        {% endif%}
+
+  </div>
+
+</div>

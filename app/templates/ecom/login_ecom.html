@@ -1,0 +1,40 @@
+{% extends "ecom/base_ecom.html" %}
+
+
+{% block top_nav %}
+
+{% include "ecom/top_nav_2.html" %}
+
+{% endblock %}
+
+{% block login_register %}
+
+<div id="login_div">
+    <div class="top_sidebar">
+        <h1>LOGIN</h1>
+    </div>
+
+    <div class="container">
+    <form action="{{ url_for ('auth.login_ecom') }}" method="POST">
+        {{ form.csrf_token }}
+        {{ form.email }}
+        {{ form.password }}
+        {{ form.submit }}
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+         <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    </div>
+
+    <div>
+      <p>or <a href="{{ url_for ('auth.register_ecom') }}"">create</a> a new account</p>
+    </div>
+
+</div>
+
+{% endblock %}

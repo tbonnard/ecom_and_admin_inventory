@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <link href="{{ url_for('static', filename='css/styles.css')}}" rel="stylesheet" type="text/css">
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico')}}">
+    <script src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+
+    <script src="https://kit.fontawesome.com/6ef435d88f.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+
+<div class='icon_menu'>
+  <i class="fas fa-bars fa-2x"></i>
+</div>
+
+
+<div class="left_sidebar">
+
+    <a href="{{ url_for('main.home') }}">
+      <div class="left_title">
+      </div>
+
+        <!-- <i class="fas fa-users-cog fa-2x"></i> -->
+        <!-- <img src="{{ url_for('static', filename='img/cloud_w.png')}}"> -->
+    </a>
+
+{% if not current_user.is_authenticated or current_user.type != 'User' %}
+
+  <a href="{{ url_for('auth.register') }}">
+    <div class="side_menu" data-path="/admin/register">
+      Register
+    </div>
+  </a>
+
+  <a href="{{ url_for('auth.login') }}">
+    <div class="side_menu" data-path="/admin/login">
+    Login
+    </div>
+  </a>
+{% else%}
+
+  <a href="{{ url_for('main.product') }}">
+    <div class="side_menu" data-path="/admin/product">
+    Products
+    </div>
+  </a>
+
+  <a href="{{ url_for('main.category') }}">
+    <div class="side_menu" data-path="/admin/category">
+      Categories
+    </div>
+  </a>
+
+
+  <a href="{{ url_for('main.client') }}">
+    <div class="side_menu" data-path="/admin/client">
+      Clients
+    </div>
+  </a>
+
+
+  <a href="{{ url_for('main.order') }}">
+    <div class="side_menu" data-path="/admin/order">
+    Orders
+    </div>
+  </a>
+
+  <a href="{{ url_for('main.transaction') }}">
+    <div class="side_menu" data-path="/admin/transaction">
+      Transactions
+    </div>
+  </a>
+
+  <a href="{{ url_for('main.cart') }}">
+    <div class="side_menu" data-path="/admin/cart">
+      Carts
+    </div>
+  </a>
+
+    <a href="{{ url_for('ecom.index') }}" target="_blank">
+    <div class="side_menu">
+      Go to e-com
+    </div>
+  </a>
+
+  <a href="{{ url_for('auth.logout') }}">
+    <div class="side_menu" data-path="Logout">
+      Logout
+    </div>
+  </a>
+
+
+
+
+  {% endif%}
+</div>
+
+{% block login_register %}
+
+{% endblock %}
+
+{% if current_user.status == 'active'%}
+
+{% block content%}
+
+{% endblock %}
+
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "ecom/base_ecom.html"%}
+
+{% block top_nav %}
+
+{% include "ecom/top_nav_2.html" %}
+{% endblock  %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+<h1>Thank you for your transaction!</h1>
+
+<a href="{{url_for('ecom.index') }}" type="button">Home</a>
+</div>
+{% endblock  %}
+

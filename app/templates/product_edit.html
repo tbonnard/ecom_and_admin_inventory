@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content%}
+
+
+<div class="top_sidebar">
+	<h1>Product Details</h1>
+</div>
+
+
+<div class="container">
+
+<h2>Edit "{{ form.name.data|capitalize }}"</h2>
+<form action="{{ url_for('main.product_edit', product_id=product.id) }}" method="POST">
+	{{ form.csrf_token }}
+		<label for="name">Name</label>
+    {{ form.name }}
+		<label for="sku">SKU</label>
+    {{ form.sku }}
+		<label for="description">Description</label>
+    {{ form.description }}
+		<label for="price">Price</label>
+    {{ form.price }}
+		<label for="cost">Cost</label>
+		{{ form.cost }}
+		<label for="status">Status</label>
+		{{ form.status }}
+		<label for="quantity">Quantity</label>
+    {{ form.quantity }}
+		<label for="img_url">Url Image</label>
+    {{ form.img_url }}
+		<label for="category">Categories</label>
+    {{ form.category }}
+    {{ form.submit }}
+</form>
+
+{% if product.quantity > 0%}
+<form action="{{ url_for('main.add_to_cart', product_id=product.id) }}" method="POST">
+    <button class="cart_buy" type="submit">Add</button>
+</form>
+{% endif %}
+
+</div>
+
+
+{% endblock %}

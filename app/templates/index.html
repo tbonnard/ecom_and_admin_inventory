@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+  <div class="top_sidebar">
+    <h1>User</h1>
+  </div>
+
+
+
+<div class="container">
+	<h2>List of all users</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>FIRST NAME</th>
+        <th>LAST NAME</th>
+				<th>EMAIL</th>
+        <th>TYPE</th>
+        <th>STATUS</th>
+			</tr>
+		</thead>
+		<tbody>
+				{% for i in users %}
+				<tr>
+						<td>{{ i.id }}</td>
+						<td>{{ i.first_name }}</td>
+            <td>{{ i.last_name }}</td>
+						<td>{{ i.email }}</td>
+            <td>{{ i.type }}</td>
+            <td>{{ i.status }}
+              {%if i.status != 'active'%}<a href="{{ url_for('auth.activate', user_id=i.id) }}"> - activate</a> {% endif %}
+</td>
+				</tr>
+				{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+{% endblock %}

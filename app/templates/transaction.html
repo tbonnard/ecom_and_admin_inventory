@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="top_sidebar">
+	<h1>Transactions</h1>
+</div>
+
+
+
+<div class="container">
+	<h2>List of all transactions</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>DATE</th>
+				<th>STATUS</th>
+				<th>TOTAL PRICE</th>
+				<th>USER ID</th>
+				<th>USER FIRST NAME</th>
+				<th>STRIPE PAYMENT INTENT</th>
+				<th>STRIPE SESSION ID</th>
+			</tr>
+		</thead>
+		<tbody>
+				{% for i in transactions %}
+				<tr>
+						<td>{{ i.id }}</td>
+						<td>{{ i.transaction_date }}</td>
+						<td>{{ i.status }}</td>
+						<td>{{ i.total_price }}</td>
+						<td>{{ i.user_id }}</td>
+						<td>{{ i.user.first_name }}</td>
+						<td><a href="https://dashboard.stripe.com/test/payments/{{ i.stripe_payment_intent }}" target="_blank">{{ i.stripe_payment_intent }}</a></td>
+						<td>{{ i.stripe_session_id }}</td>
+				</tr>
+				{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="top_sidebar">
+	<h1>Product</h1>
+</div>
+
+
+<div class="sub_nav">
+	<button type="button" name="all_products" id="products_list_btn" class="sub_nav_active">All products</button>
+	<button type="button" name="create_product" id="products_create_btn">Create a new product</button>
+</div>
+
+
+<div class="container" id="products_list">
+	<h2>List of all products</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>SKU</th>
+				<th>PRICE</th>
+				<th>COST</th>
+				<th>STATUS</th>
+				<th>QUANTITY</th>
+			</tr>
+		</thead>
+		<tbody>
+				{% for i in products %}
+				<tr>
+						<td>{{ i.id }}</td>
+						<td><a href="{{ url_for('main.product_edit', product_id=i.id) }}">{{ i.name }}</a></td>
+						<td>{{ i.sku }}</td>
+						<td>{{ i.price }}</td>
+						<td>{{ i.cost }}</td>
+						<td>{{ i.status }}</td>
+						<td>{{ i.quantity }}</td>
+				</tr>
+				{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+
+<div class="container" id="products_create">
+	<h2>Create a new product</h2>
+
+	<form action="{{ url_for('main.product') }}" method="POST">
+		{{ form.csrf_token }}
+		<label for="name">Name</label>
+    {{ form.name }}
+		<label for="sku">SKU</label>
+    {{ form.sku }}
+		<label for="description">Description</label>
+    {{ form.description }}
+		<label for="price">Price</label>
+    {{ form.price }}
+		<label for="cost">Cost</label>
+		{{ form.cost }}
+		<label for="status">Status</label>
+		{{ form.status }}
+		<label for="quantity">Quantity</label>
+    {{ form.quantity }}
+		<label for="img_url">Url Image</label>
+    {{ form.img_url }}
+		<label for="category">Categories</label>
+    {{ form.category }}
+    {{ form.submit }}
+	</form>
+</div>
+
+
+<script type="text/javascript">
+	document.querySelector('#products_create').style.display = 'none';
+
+	document.querySelector('#products_list_btn').addEventListener('click', () => {
+		document.querySelector('#products_list').style.display = 'block';
+		document.querySelector('#products_create').style.display = 'none';
+		document.querySelector('#products_list_btn').className = "sub_nav_active";
+		document.querySelector('#products_create_btn').className = "";
+	})
+
+	document.querySelector('#products_create_btn').addEventListener('click', () => {
+		document.querySelector('#products_list').style.display = 'none';
+		document.querySelector('#products_create').style.display = 'block';
+		document.querySelector('#products_create_btn').className = "sub_nav_active";
+		document.querySelector('#products_list_btn').className = "";
+	})
+</script>
+
+
+{% endblock %}

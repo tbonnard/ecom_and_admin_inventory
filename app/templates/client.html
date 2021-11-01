@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="top_sidebar">
+  <h1>Clients</h1>
+</div>
+
+
+<div class="container">
+	<h2>List of all clients</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>FIRST NAME</th>
+				<th>LAST NAME</th>
+				<th>EMAIL</th>
+        <th>TYPE</th>
+			</tr>
+		</thead>
+		<tbody>
+				{% for i in clients %}
+				<tr>
+						<td>{{ i.id }}</td>
+						<td>{{ i.first_name }}</td>
+						<td>{{ i.last_name }}</td>
+						<td>{{ i.email }}</td>
+            <td>{{ i.type }}</td>
+
+				</tr>
+				{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+
+
+{% endblock %}

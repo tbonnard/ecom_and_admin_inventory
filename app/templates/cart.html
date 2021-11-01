@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="top_sidebar">
+  <h1>Cart</h1>
+</div>
+
+
+<div class="container">
+	<h2>List of all carts</h2>
+
+  {% for i in carts%}
+
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>USER ID</th>
+        <th>USER EMAIL</th>
+				<th>PRODUCTS</th>
+        <th>STRIPE SESSION ID</th>
+        <th>BUY</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr>
+						<td>{{ i.id }}</td>
+            <td>{{ i.user_id }}</td>
+            <td>{{ i.user.email }}</td>
+						<td>
+              {%for j in i.products %}
+              <p> {{ j.name }} - <a href="{{ url_for('main.delete_product_cart', cart_id=i.id, product_id = j.id) }}">✘</a>
+                </p>
+              {% endfor %}
+            </td>
+            <td>{{ i.stripe_session_id }}</td>
+            <td>
+              <a href="{{ url_for('main.buy', cart_id=i.id) }}">buy</a>
+            </td>
+				</tr>
+		</tbody>
+	</table>
+{% endfor %}
+
+</div>
+
+
+{% endblock %}
