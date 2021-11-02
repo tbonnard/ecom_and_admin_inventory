@@ -394,4 +394,12 @@ label {
     padding-top: 100px;
   }
 
+  #iconnav3 {
+    color: var(--dark_green);
+  }
+
+  #iconnav3:hover {
+    color: var(--text_grey);
+  }
+
 }

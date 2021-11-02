@@ -20,8 +20,9 @@ function get_cart(client_id) {
 function update_cart(data){
   if (data['status'] != "no cart") {
     let cart_icon = document.querySelector('#cart_header');
-    cart_icon.innerHTML = `    ${data['products'].length}`;
-
+    if (data['products'].length >0 ) {
+      cart_icon.innerHTML = `    ${data['products'].length}`;
+    }
   }
 }
 
