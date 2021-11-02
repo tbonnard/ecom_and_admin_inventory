@@ -33,7 +33,10 @@
 
   {% else %}
   <a href="{{ url_for('ecom.index') }}" name="continue_shopping" class="cart_action">add an item to your cart</a>
+  {% if not current_user.is_authenticated %}
   <p class='info'>an account must be created</p>
+  {% endif %}
+
 
 {% endif %}
 
