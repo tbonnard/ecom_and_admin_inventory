@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-
    function check_active_url(i) {
      let path = window.location.pathname;
      let menu_path = i.dataset.path;
