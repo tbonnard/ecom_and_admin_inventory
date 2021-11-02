@@ -207,8 +207,9 @@ th {
 
 @media (max-width: 990px) {
   .container{
-    padding: 50px 5% 5% 25px;
+    padding: 10% 5%;
   }
+
   .top_sidebar {
     padding: 20px 0 20px 30px;
   }
@@ -220,10 +221,7 @@ th {
   .sub_nav button {
     padding: 0 20px 0 0;
   }
-  
-  /* .left_sidebar {
-    display: none;
-  } */
+
 }
 
 @media (min-width: 990px) {

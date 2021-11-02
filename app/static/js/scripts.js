@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       toggleMenu();
   }
 
-  document.querySelector(".icon_menu").addEventListener('click', () => {
+  document.querySelector("#icon_menu_icon").addEventListener('click', () => {
     toggleMenu()
   })
 
