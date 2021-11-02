@@ -3,6 +3,7 @@ from app import db
 from flask import render_template, url_for, redirect, Blueprint, request
 from flask_login import login_required, current_user
 import os
+import math
 
 from .forms import CategoryForm, ProductForm
 from .models import Product, Category, Order, Transaction, Cart, User
@@ -54,7 +55,7 @@ def product():
         new_product.product_stripe_id = new_prod_stripe['id']
         new_prod_price = new_prod_stripe['id']
         new_prod_price_stripe = stripe.Price.create(
-            unit_amount=int((new_product.price)*100),
+            unit_amount=int(new_product.price * 100),
             currency="cad",
             product=new_prod_price,
         )
@@ -79,6 +80,16 @@ def product_edit(product_id):
             product_to_edit.img_url = form.img_url.data
             product_to_edit.quantity = form.quantity.data
             product_to_edit.categories = form.category.data
+            db.session.commit()
+            # archive price - can not update price/nor delete
+            stripe.Price.modify(product_to_edit.product_price_stripe_id, active=False)
+            # get the new price
+            new_prod_price_stripe = stripe.Price.create(
+                unit_amount=int(product_to_edit.price * 100),
+                currency="cad",
+                product=product_to_edit.product_stripe_id,
+            )
+            product_to_edit.product_price_stripe_id = new_prod_price_stripe['id']
             db.session.commit()
             return redirect(url_for('main.product'))
         return render_template("product_edit.html", product=product_to_edit, form=form)
