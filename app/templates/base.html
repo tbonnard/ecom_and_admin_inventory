@@ -44,6 +44,9 @@
     Login
     </div>
   </a>
+
+    <a href="{{url_for('auth.login_admin') }}"><button class="button_demo">Login as Demo</button></a>
+
 {% else%}
 
   <a href="{{ url_for('main.product') }}">

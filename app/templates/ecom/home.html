@@ -25,7 +25,7 @@
   <h2>PRODUCTS</h2>
 
 <div class="sub_nav">
-  <a href="{{url_for('ecom.index', cat_id=0) }}"><button >All</button></a>
+  <a href="{{url_for('ecom.index', cat_id=0) }}"><button>All</button></a>
 
   {% for i in categories %}
   <a href="{{url_for('ecom.index', cat_id=i.id) }}"><button>{{i.name}}</button></a>

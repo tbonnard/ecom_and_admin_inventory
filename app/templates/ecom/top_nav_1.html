@@ -25,6 +25,11 @@
         <a href="{{ url_for('auth.login_ecom') }}">
           Connect
         </a>
+
+      <a href="{{ url_for('auth.login_ecom_admin') }}">
+          Connect as Demo
+        </a>
+
       {% else%}
 
         <a href="{{ url_for('ecom.profile') }}">

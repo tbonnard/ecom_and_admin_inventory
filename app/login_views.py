@@ -49,6 +49,20 @@ def login():
     return render_template('login.html', form=form)
 
 
+@auth.route("/admin/login_admin", methods=['GET', 'POST'])
+def login_admin():
+    user = User.query.filter_by(email="admin@test.com").first()
+    login_user(user)
+    return redirect(url_for('main.home'))
+
+
+@auth.route("/login_admin", methods=['GET', 'POST'])
+def login_ecom_admin():
+    user = User.query.filter_by(email="admin@test.com").first()
+    login_user(user)
+    return redirect(url_for('ecom.index'))
+
+
 @auth.route("/admin/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
