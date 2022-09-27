@@ -4,9 +4,9 @@ Application running an e-commerce website and its inventory management platform.
 </br></br>This platform is just a demo, including a payment checkout with Stripe.
 </br>
 ### Demo of the plaform
-[Live demo: e-commerce website](https://ecom-platform.herokuapp.com/)
+[Live demo: e-commerce website](https://ecomplatform.pythonanywhere.com)
 </br>
-[Live demo: admin platform](https://ecom-platform.herokuapp.com/admin)
+[Live demo: admin platform](https://ecomplatform.pythonanywhere.com/admin)
 </br></br>
 <i>In that demo, creating an account as an admin will be auto activated so you can access all of the features.
 </br>
